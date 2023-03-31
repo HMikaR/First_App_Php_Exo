@@ -1,0 +1,61 @@
+Notes Fichier traitement.php : 
+
+Note 1 :
+Nous vérifions alors l'existence de la clé "submit" dans le tableau $_POST, celle clé correspondant à l'attribut "name" du bouton <input type="submit" name="submit"> du formulaire. La condition sera alors vraie seulement si la requête POST transmet bien une clé "submit" au serveur.
+Dans l'autre cas, la ligne 8 effectue une redirection grâce à la fonction header(). Il n'y a pas de "else" à la condition puisque dans tous les cas (formulaire soumis ou non), nous souhaitons revenir au formulaire après traitement.
+
+________________________________________________________________
+
+Nota bene 1 : 
+
+La fonction header() peut être utilisée pour définir les entêtes HTTP de la réponse, tels que le type de contenu, les cookies, les redirections, etc. Par exemple, pour rediriger l'utilisateur vers une autre page, vous pouvez utiliser la fonction header() avec le paramètre Location pour spécifier l'URL de la page de destination :
+
+
+Exemple  de code
+header('Location: http://www.example.com/');
+exit;
+
+((!)) Il est important de noter que la fonction header() doit être appelée avant toute sortie vers le navigateur. Cela signifie que si vous avez déjà envoyé du contenu au navigateur, par exemple en utilisant la fonction echo(), il sera trop tard pour utiliser la fonction header() pour modifier les entêtes HTTP.
+
+En outre, la fonction header() ne doit pas être utilisée pour des raisons de sécurité, car elle peut être utilisée pour effectuer des attaques d'injection de script et d'autres types d'attaques. Il est donc important de valider les données utilisateur avant de les utiliser dans les paramètres de la fonction header().
+
+
+----------------------------------------------------------------
+Nota bene 2 : 
+fonction input() : 
+
+La fonction PHP filter_input() permet, depuis la version 5.2.0, d'effectuer une validation ou un nettoyage de chaque donnée transmise par le formulaire en employant divers filtres1. Détaillons ceux que nous utilisons 
+
+----------------------------------------------------------------
+Nota bene 3 : variable $_SESSION : 
+
+Cette ligne de code ajoute un élément à un tableau stocké dans une variable de session en PHP.
+
+La variable $_SESSION est un tableau associatif en PHP qui permet de stocker des données de session pour un utilisateur donné. Les données de session sont stockées côté serveur et peuvent être utilisées pour stocker des informations sur l'utilisateur tout au long de sa visite sur le site.
+
+Dans ce cas, la clé 'products' du tableau $_SESSION est utilisée pour stocker un tableau de produits. La syntaxe $_SESSION['products'][] signifie que l'on accède à la clé 'products' du tableau $_SESSION et on ajoute un nouvel élément à la fin du tableau.
+
+Le nouvel élément ajouté est la variable $products, qui est ajoutée à la fin du tableau en utilisant la notation []=. Cette notation ajoute un nouvel élément à la fin du tableau, en déterminant automatiquement l'indice de l'élément ajouté.
+
+En résumé, cette ligne de code stocke une variable $products dans un tableau associatif $_SESSION, sous la clé 'products', en ajoutant cette variable à la fin du tableau des produits stockés dans la session.
+----------------------------------------------------------------
+-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+Notes pour la feuille Recap.php : 
+
+affiche un tableau récapitulatif des produits stockés dans la variable de session $_SESSION['products'].
+
+Le code commence par démarrer une session avec la fonction session_start(). Ensuite, il affiche une page HTML avec un titre "Récapitulatif des produits".
+
+Ensuite, il vérifie si la variable de session $_SESSION['products'] existe et n'est pas vide. Si c'est le cas, il affiche le tableau récapitulatif des produits. Si ce n'est pas le cas, il affiche le message "Aucun produit en session...".
+
+Le tableau est créé avec la balise HTML <table>. La première ligne du tableau contient les entêtes de colonnes avec les noms "#", "Nom", "Prix", "Quantité" et "Total".
+
+Ensuite, il y a une boucle foreach qui itère sur chaque élément de $_SESSION['products']. Pour chaque élément, le code crée une nouvelle ligne dans le tableau avec les informations du produit. Le numéro de l'élément est affiché dans la première colonne, le nom du produit dans la deuxième colonne, le prix unitaire dans la troisième colonne, la quantité dans la quatrième colonne, et le total pour cet élément dans la cinquième colonne.
+
+A chaque itération de la boucle foreach, le total du produit est ajouté au total général en utilisant l'opérateur d'addition "+=".
+
+Enfin, une dernière ligne est ajoutée au tableau avec le total général de tous les produits. Cette ligne contient les cellules "Total général" et le montant total général calculé précédemment.
+
+Le code utilise également la fonction number_format() pour formater les nombres avec des milliers séparés par des espaces et les décimales séparées par des virgules. Les prix sont affichés avec l'euro symbole.
+
