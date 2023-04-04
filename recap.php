@@ -1,18 +1,8 @@
 <?php 
-session_start();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Récapitulatif des produits</title>
-</head>
-<body>
-
-    <?php 
+    session_start();
+    ob_start();
    if (!isset($_SESSION['products']) || empty($_SESSION['products'])){
-    echo "<p>Aucun produit en session...</p>";
+    echo "<p>Aucun produit en session 😕</p>";
    }
    else {
     echo "<table>",
@@ -43,9 +33,10 @@ session_start();
                 "<td><strong>".number_format($totalGeneral, 2, ",", "&nbsp;")."&nbsp;€</strong></td>",
             "</tr>",
     "</tbody>",
-    "</table>";
+    "</table> <button class='button'><a href='traitement.php?action=viderAll'>Vider le panier</button>";
    } 
-
+$content = ob_get_clean();
+    require "template.php";
    ?>
 </body>
 </html>

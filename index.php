@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <title>Ajout produit></title>
-</head>
-<body>
+<?php 
+    session_start();
+    ob_start();
+?>
     <h1>Ajouter un produit</h1>
-     <form action="traitement.php" method="post"> 
+    <form action="traitement.php?action=add" method="post" id="form" enctype="multipart/form-data">
         <p>
             <label>
                 Nom du produit : 
@@ -29,8 +24,11 @@
             </label>
         </p>
         <p> 
-            <input  type="submit" name="submit" value="AJouter le produit">
+            <input  type="submit" name="submit" value="Ajouter le produit">
         </p>
     </form>
-</body>
-</html>
+    <?php
+    $content = ob_get_clean();
+    require "template.php";
+?>
+
