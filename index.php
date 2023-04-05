@@ -4,7 +4,7 @@
     ob_start();
 ?>
     <h1>Ajouter un produit</h1>
-    <form action="traitement.php?action=add" method="post" id="form" enctype="multipart/form-data">
+    <form action="traitement.php?action=add" method="post" enctype="multipart/form-data">
         <p>
             <label>
                 Nom du produit : 
@@ -24,7 +24,7 @@
             </label>
         </p>
         <p> 
-            <input  type="submit" name="submit" value="Ajouter le produit">
+            <input  class ="indexbutton" type="submit" name="submit" value="Ajouter le produit">
         </p>
     </form>
     <?php

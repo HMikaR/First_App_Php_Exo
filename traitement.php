@@ -1,4 +1,3 @@
-
 <?php 
 
 session_start();
@@ -40,6 +39,7 @@ if (isset($_GET['action'])){
             break;
 
         case "delete":
+            $id = $_GET['id'];
             if(isset($_SESSION['products'][$id])){
                 $_SESSION["message"] = "Le produit ".$_SESSION['products'][$id]['name']." a été supprimé !";
                 unset($_SESSION['products'][$id]);
@@ -48,6 +48,7 @@ if (isset($_GET['action'])){
             die();
 
         case "addproduct":
+            $id = $_GET['id'];
             if(isset($_SESSION['products'][$id])){
                 $_SESSION['products'][$id]['qtt'] += 1;
                 $_SESSION['products'][$id]['total'] = $_SESSION['products'][$id]['qtt'] * $_SESSION['products'][$id]['price'];
@@ -56,6 +57,7 @@ if (isset($_GET['action'])){
             die();
 
         case "minusproduct":
+            $id = $_GET['id'];
             if(isset($_SESSION["products"][$id])){
                 if($_SESSION["products"][$id]["qtt"]==1){
                     $_SESSION["msg"] = "Le produit a été supprimé du panier.";
@@ -69,6 +71,6 @@ if (isset($_GET['action'])){
             die();
     }
 }
-header("Location:index.php");
+header("Location:recap.php");
 die();
 ?>

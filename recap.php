@@ -22,8 +22,10 @@
                         "<td>&nbsp". $index. "</td>",
                         "<td>&nbsp". $product['name']. "</td>",
                         "<td>&nbsp". number_format($product['price'], 2, ",","&nbsp;"). "&nbsp;€</td>",
-                        "<td>&nbsp". $product['qtt']. "</td>",
+                        "<td>". $product['qtt']."<div class='qttPlusMoins'><a href='traitement.php?action=addproduct&id=".$index."' class='btnPlusMoins'>+</a><a href='traitement.php?action=minusproduct&id=".$index."' class='btnPlusMoins'>-</a></div></td>",
                         "<td>&nbsp". number_format($product['total'], 2, ",","&nbsp;"). "&nbsp;€</td>",
+                        "<td id='btndeletebackground'><a href='traitement.php?action=delete&id=".$index."' class='deleteBtn'>Supprimer</a></td>",
+
                     "</tr>";
                     $totalGeneral += $product['total'];
             }
